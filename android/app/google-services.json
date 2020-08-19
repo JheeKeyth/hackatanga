@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "311138489293",
+    "firebase_url": "https://hackatanga-3dba1.firebaseio.com",
+    "project_id": "hackatanga-3dba1",
+    "storage_bucket": "hackatanga-3dba1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311138489293:android:0ada36c2ce04a1e7cdaa84",
+        "android_client_info": {
+          "package_name": "com.hackatanga.hackatanga_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311138489293-d5sego32uok5pbtjh8tum3ookb8bfg2j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackatanga.hackatanga_project",
+            "certificate_hash": "3a7f707000e3c78941c9c7b2e1ea5ae3897460a0"
+          }
+        },
+        {
+          "client_id": "311138489293-jd21dlpcpktdag39558kbgm33pgl6k90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBVIWiHZTDUW2-akjoI72mYpZD2tNxwO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311138489293-jd21dlpcpktdag39558kbgm33pgl6k90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
