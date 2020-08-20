@@ -1,5 +1,6 @@
 //imports flutter
 import 'package:flutter/material.dart';
+import 'package:hackatanga_project/screens/home/home.dart';
 
 //imports local
 import 'package:hackatanga_project/screens/tour/tour.dart';
@@ -13,9 +14,10 @@ void main() => runApp(
         home: Builder(
           builder: (BuildContext context){
             var screenHeight = MediaQuery.of(context).size.height;
-            return Tour(
-              screenHeight: screenHeight,
-            );
+            return Home();
+//            Tour(
+//              screenHeight: screenHeight,
+//            );
           },
         ),
       ),
