@@ -35,7 +35,7 @@ dependencies:
   google_sign_in: ^4.4.4
   image_picker: ^0.6.7+4
   carousel_slider: ^2.2.1
-
+  firebase_database: ^4.0.0
 
 dev_dependencies:
   flutter_test:

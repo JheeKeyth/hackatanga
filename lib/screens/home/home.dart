@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackatanga_project/screens/chat/chat.dart';
 import 'package:hackatanga_project/screens/home/components/fab_bottom_app_bar.dart';
 import 'package:hackatanga_project/screens/home/components/anchored_overlay.dart';
 import 'package:hackatanga_project/screens/home/components/drawer.dart';
@@ -87,11 +88,13 @@ class _HomePageState extends State<Home> {
     if(index == 0){
       return HomePage();
     } else if(index == 1){
-      return Container(color: Colors.amber);
+      return Chat();
     } else if(index == 2){
       return Container(color: Colors.deepOrange);
     } else if(index == 3){
       return Container(color: Colors.pinkAccent);
     }
+
+    return null;
   }
 }
