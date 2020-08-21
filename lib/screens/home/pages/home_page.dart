@@ -51,9 +51,7 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               'Se identificou com alguma situação? \n Não tenha medo de pedir ajuda.\n Estamos aqui por você!',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20
-              ),
+              style: TextStyle(fontSize: 20),
             ),
           )
         ],
