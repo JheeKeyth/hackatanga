@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FabWithIcons extends StatefulWidget {
   FabWithIcons({this.icons, this.onIconTapped});
@@ -35,7 +36,7 @@ class FabWithIconsState extends State<FabWithIcons> with TickerProviderStateMixi
 
   Widget _buildChild(int index) {
     Color backgroundColor = Theme.of(context).cardColor;
-    Color foregroundColor = Theme.of(context).accentColor;
+    Color foregroundColor = Colors.red;
     return Container(
       height: 70.0,
       width: 56.0,
@@ -68,10 +69,12 @@ class FabWithIconsState extends State<FabWithIcons> with TickerProviderStateMixi
           _controller.reverse();
         }
       },
-      child: Icon(
-        Icons.security,
-        color: Colors.white,
-        size: 38,
+      child: Text(
+        'SOS',
+        style: GoogleFonts.oswald(
+          fontSize: 24,
+          color: Colors.white
+        ),
       ),
       elevation: 4.0,
     );
