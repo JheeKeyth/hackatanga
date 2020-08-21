@@ -4,6 +4,7 @@ import 'package:hackatanga_project/screens/home/components/fab_bottom_app_bar.da
 import 'package:hackatanga_project/screens/home/components/anchored_overlay.dart';
 import 'package:hackatanga_project/screens/home/components/drawer.dart';
 import 'package:hackatanga_project/screens/home/components/fab_with_icons.dart';
+import 'package:hackatanga_project/screens/home/pages/emergency_page.dart';
 import 'package:hackatanga_project/screens/home/pages/home_page.dart';
 import 'package:hackatanga_project/screens/home/pages/psychologist_page.dart';
 import 'package:hackatanga_project/theme/constants.dart';
@@ -93,7 +94,7 @@ class _HomePageState extends State<Home> {
     } else if (index == 2) {
       return Psychologist();
     } else if (index == 3) {
-      return Container(color: Colors.pinkAccent);
+      return EmergencyPage();
     }
 
     return null;
