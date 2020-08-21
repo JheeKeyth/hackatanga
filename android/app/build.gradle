@@ -23,10 +23,7 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-<<<<<<< HEAD
-=======
 apply plugin: 'com.google.gms.google-services'
->>>>>>> ca67800a3291f88c0f0caaf403f7cb261e309509
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
@@ -47,10 +44,7 @@ android {
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-<<<<<<< HEAD
-=======
         multiDexEnabled true
->>>>>>> ca67800a3291f88c0f0caaf403f7cb261e309509
     }
 
     buildTypes {
@@ -68,8 +62,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-<<<<<<< HEAD
-=======
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     implementation 'com.google.firebase:firebase-auth:19.3.2'
     implementation 'com.google.firebase:firebase-auth:19.3.2'
@@ -80,5 +72,4 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision-face-model:18.0.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.multidex:multidex:2.0.1'
->>>>>>> ca67800a3291f88c0f0caaf403f7cb261e309509
 }
