@@ -5,9 +5,9 @@ class ExempleTextColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextColumn(
-      title: 'Community',
+      title: 'Exemplo 1',
       text:
-      'Eu sint do id aliqua qui tempor sint cillum commodo id voluptate qui.',
+      'Esse é um slide de exemplo.',
     );
   }
 }

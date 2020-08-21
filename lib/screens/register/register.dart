@@ -3,21 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackatanga_project/screens/login/components/fade_slide_transition.dart';
 import 'package:hackatanga_project/screens/login/components/login_form.dart';
+import 'package:hackatanga_project/screens/login/components/register_form.dart';
 import 'package:hackatanga_project/screens/login/login_controller.dart';
+import 'package:hackatanga_project/screens/register/register_controller.dart';
 import 'package:hackatanga_project/screens/tour/constants.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   final double screenHeight;
 
-  const Login({
+  const Register({
     @required this.screenHeight,
   }) : assert(screenHeight != null);
 
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
+class _RegisterState extends State<Register> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> _formElementAnimation;
 
@@ -55,30 +57,26 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: (){
-        return null;
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: kWhite,
-        body: Center(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: kPaddingL),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  FadeSlideTransition(
-                    animation: _formElementAnimation,
-                    additionalOffset: 0.0,
-                    child: Text(
-                      'Chameleon',
-                      style: GoogleFonts.oswald(
-                        fontSize: 50,
-                        color: Colors.white,
-                        textStyle: TextStyle(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: kWhite,
+      body: Center(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: kPaddingL),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                FadeSlideTransition(
+                  animation: _formElementAnimation,
+                  additionalOffset: 0.0,
+                  child: Text(
+                    'Chameleon',
+                    style: GoogleFonts.oswald(
+                      fontSize: 50,
+                      color: Colors.white,
+                      textStyle: TextStyle(
                           shadows: [
                             Shadow(
                               blurRadius: 10.0,
@@ -86,19 +84,18 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                               offset: Offset(4.0, 3.0),
                             ),
                           ]
-                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: LoginForm(
-                      animation: _formElementAnimation,
-                      loginController: LoginController(),
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 25),
+                  child: RegisterForm(
+                    animation: _formElementAnimation,
+                    registerController: RegisterController(),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

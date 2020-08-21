@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hackatanga_project/screens/chat/components/chat_message.dart';
@@ -26,30 +24,7 @@ class _ChatState extends State<Chat> {
         body: Column(
           children: [
             Expanded(
-              child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection("messages")
-                    .orderBy('senderDate')
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                    case ConnectionState.waiting:
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    default:
-                      return ListView.builder(
-                        reverse: true,
-                        itemCount: snapshot.data.documents.length,
-                        itemBuilder: (context, index){
-                          List r = snapshot.data.documents.toList();
-                          return ChatMessage(r[index].data);
-                        },
-                      );
-                  }
-                },
-              ),
+              child: ChatMessage(),
             ),
             Divider(
               height: 4,
@@ -74,45 +49,14 @@ class _ChatState extends State<Chat> {
       ),
     );
   }
-}
 
-class ChatMessage extends StatelessWidget {
+  Future _getMessages() async {
+    var firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn =
+        await firestore.collection("messages").get().then((value) {
+      print('SNAPSHOT:  ${value.docs[0].data()}');
+    });
 
-  final Map<String, dynamic> data;
-
-  ChatMessage(this.data);
-
-  @override
-  Widget build(BuildContext context) {
-    print(this.data);
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage('https://thispersondoesnotexist.com/'),
-            ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  data["senderName"],
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
-                Container(
-                    margin: const EdgeInsets.only(top: 5.0),
-                    child: Text(data["text"])
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+    return qn.docs;
   }
 }
