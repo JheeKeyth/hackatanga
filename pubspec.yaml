@@ -36,8 +36,13 @@ dependencies:
   cloud_firestore: ^0.14.0
   google_sign_in: ^4.4.4
   image_picker: ^0.6.7+4
+<<<<<<< HEAD
 
 >>>>>>> ca67800a3291f88c0f0caaf403f7cb261e309509
+=======
+  carousel_slider: ^2.2.1
+  firebase_database: ^4.0.0
+>>>>>>> 9d1f8b48f045b16e2b3e72a330b25a1dc3f45bd2
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hackatanga_project/screens/home/home_page.dart';
+import 'package:hackatanga_project/screens/home/home.dart';
 import 'package:hackatanga_project/screens/tour/tour.dart';
 
 class LoginController {
@@ -12,7 +12,7 @@ class LoginController {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
-            return HomePage();
+            return Home();
           },
         ),
       );
