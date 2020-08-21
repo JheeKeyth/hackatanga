@@ -13,16 +13,12 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        Logo(
-          color: kWhite,
-          size: 32.0,
-        ),
         GestureDetector(
           onTap: onSkip,
           child: Text(
-            'Skip',
+            'Pular',
             style:
             Theme.of(context).textTheme.subtitle1.copyWith(color: kWhite),
           ),

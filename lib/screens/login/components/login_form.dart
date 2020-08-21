@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hackatanga_project/screens/login/components/custom_button.dart';
 import 'package:hackatanga_project/screens/login/components/custom_input_field.dart';
 import 'package:hackatanga_project/screens/login/components/fade_slide_transition.dart';
 import 'package:hackatanga_project/screens/login/login_controller.dart';
+import 'package:hackatanga_project/screens/register/register.dart';
 import 'package:hackatanga_project/screens/tour/constants.dart';
 
 class LoginForm extends StatelessWidget {
@@ -18,7 +20,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height =
-        MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
+        MediaQuery.of(context).size.height;
     var space = height > 650 ? kSpaceM : kSpaceS;
 
     return Padding(
@@ -68,7 +70,6 @@ class LoginForm extends StatelessWidget {
                 height: 48.0,
               ),
               onPressed: () {
-                //TODO: Login with Google
                 loginController.login(context);
               },
             ),
@@ -82,7 +83,12 @@ class LoginForm extends StatelessWidget {
               textColor: kWhite,
               text: 'Crie uma conta',
               onPressed: () {
-                //TODO: Create page register
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return Register(screenHeight: MediaQuery.of(context).size.height);
+                    },
+                  ),
+                );
               },
             ),
           ),

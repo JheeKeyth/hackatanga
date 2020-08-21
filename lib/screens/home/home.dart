@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hackatanga_project/screens/chat/chat.dart';
 import 'package:hackatanga_project/screens/home/components/fab_bottom_app_bar.dart';
 import 'package:hackatanga_project/screens/home/components/anchored_overlay.dart';
 import 'package:hackatanga_project/screens/home/components/drawer.dart';
@@ -30,9 +32,13 @@ class _HomePageState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          title_app,
-          textAlign: TextAlign.center,
+        title: Center(
+          child: Text(
+            title_app,
+            style: GoogleFonts.oswald(
+              fontSize: 24,
+            ),
+          ),
         ),
         elevation: 3,
       ),
@@ -73,11 +79,7 @@ class _HomePageState extends State<Home> {
       },
       child: FloatingActionButton(
         onPressed: () {},
-        child: Icon(
-          Icons.security,
-          color: Colors.white,
-          size: 40,
-        ),
+        child: Text('SOS'),
         elevation: 5.0,
       ),
     );
@@ -87,11 +89,13 @@ class _HomePageState extends State<Home> {
     if(index == 0){
       return HomePage();
     } else if(index == 1){
-      return Container(color: Colors.amber);
+      return Chat();
     } else if(index == 2){
       return Container(color: Colors.deepOrange);
     } else if(index == 3){
       return Container(color: Colors.pinkAccent);
     }
+
+    return null;
   }
 }

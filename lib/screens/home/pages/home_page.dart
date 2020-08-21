@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hackatanga_project/screens/home/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,57 +8,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  PageController pageController;
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 400,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              reverse: false,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 15),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enlargeCenterPage: true,
-              scrollDirection: Axis.horizontal,
+    return PageView.builder(
+      controller: pageController,
+      itemCount: slider.length,
+      allowImplicitScrolling: true,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              image: NetworkImage(slider[index]),
             ),
-            items: [1, 2, 3, 4, 5].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Colors.black38),
-                      child: Center(
-                        child: Text(
-                          'Uma possível imagem $i',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16.0, color: Colors.white),
-                        ),
-                      ));
-                },
-              );
-            }).toList(),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 25),
-            alignment: Alignment.center,
-            child: Text(
-              'Se identificou com alguma situação? \n Não tenha medo de pedir ajuda.\n Estamos aqui por você!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20
+            Center(
+              child: Text(
+                'Se identificou com alguma situação? \n Não tenha medo de pedir ajuda.\n Estamos aqui por você!',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.oswald(
+                    fontSize: 24,
+                  ),
               ),
             ),
-          )
-        ],
-      ),
+          ],
+        );
+      },
     );
   }
 }
