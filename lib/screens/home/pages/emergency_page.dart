@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EmergencyPage extends StatefulWidget {
   @override
@@ -12,7 +13,9 @@ class _EmergencyPageState extends State<EmergencyPage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text ('Emergência', style: TextStyle(fontSize: 24 )),
+          title: Text ('Emergência', style: GoogleFonts.oswald(
+            textStyle: TextStyle(fontSize: 24, letterSpacing: 1.5),
+          ),),
           centerTitle: true,
           backgroundColor: Color(0xFFCFA181),
           leading:   new IconButton(
@@ -25,7 +28,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 12),
+              SizedBox(height: 48),
               SizedBox(
                 height: 48,
                 width: 332,
