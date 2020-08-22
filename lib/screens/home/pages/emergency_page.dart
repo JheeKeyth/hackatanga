@@ -32,9 +32,11 @@ class _EmergencyPageState extends State<EmergencyPage> {
               SizedBox(
                 height: 48,
                 width: 332,
+
                 child: RaisedButton(
                   shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)
+                      borderRadius: new BorderRadius.circular(10.0),
+
                   ),
                   onPressed: () {print("texto");},
                   color: Color(0xFFCFA181),
@@ -44,7 +46,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
                     // Replace with a Row for horizontal icon + text
                     children: <Widget>[
                       Icon(Icons.person, size: 48),
-                      Text('Delegacia da Mulher', style: TextStyle(fontSize: 20)),
+                      Text('Delegacia da Mulher', style: TextStyle(fontSize: 20))
                     ],
                   ),
                 ),
