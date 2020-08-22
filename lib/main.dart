@@ -20,7 +20,7 @@ void main() async {
       title: title_app,
       theme: appTheme(),
       home: Builder(
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           var screenHeight = MediaQuery.of(context).size.height;
           //return Login( screenHeight: screenHeight);
           return Home();
