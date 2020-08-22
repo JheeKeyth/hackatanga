@@ -14,76 +14,51 @@ class _EmergencyPageState extends State<EmergencyPage> {
         appBar: AppBar(
           title: Text('Emergência'),
           centerTitle: true,
+          backgroundColor: Color(0xFFCFA181),
         ),
-        body: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(10),
-              alignment: Alignment.topLeft,
-              child: Text('Informações: ',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            ),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                const Icon(Icons.sentiment_very_satisfied),
-                FlatButton(
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text("Delegacia da mulher: 180"),
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 12),
+              SizedBox(
+                height: 47,
+                width: 332,
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: Color(0xFFCFA181),
+                  textColor: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // Replace with a Row for horizontal icon + text
+                    children: <Widget>[
+                      Icon(Icons.person),
+                      Text('Delegacia', style: TextStyle(fontSize: 20)),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                const Icon(Icons.sentiment_very_satisfied),
-                FlatButton(
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text("Polícia Militar: 190"),
+              ),
+              //inicio botao mais contatos
+              SizedBox(height: 12),
+              SizedBox(
+                height: 47,
+                width: 332,
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: Color(0xFF9d7254),
+                  textColor: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // Replace with a Row for horizontal icon + text
+                    children: <Widget>[
+                      Icon(Icons.person_add),
+                      Text('Novo Contato', style: TextStyle(fontSize: 20)),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                const Icon(Icons.sentiment_very_satisfied),
-                FlatButton(
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text("Samu: 192"),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                const Icon(Icons.sentiment_very_satisfied),
-                FlatButton(
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text("Disque Direitos Humanos: 100"),
-                ),
-              ],
-            ),
-            FlatButton(
-              onPressed: () => {},
-              color: Colors.orange,
-              padding: EdgeInsets.all(10.0),
-              child: Text("SOS"),
-            ),
-            FlatButton(
-              onPressed: () {
-                /*...*/
-              },
-              child: Text("Deseja cadastrar um contato de emergência? "),
-            ),
-          ],
+              ),
+              //fim botao mais contatos
+            ],
+          ),
         ),
       ),
     );
