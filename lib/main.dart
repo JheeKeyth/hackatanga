@@ -7,7 +7,7 @@ import 'package:hackatanga_project/screens/home/home.dart';
 import 'package:hackatanga_project/screens/home/pages/emergency_page.dart';
 import 'package:hackatanga_project/screens/home/pages/juristical_contacts_page.dart';
 import 'package:hackatanga_project/screens/home/pages/psychologist_contacts_page.dart';
-
+import 'package:hackatanga_project/screens/home/pages/psychologist_page.dart';
 //imports local
 import 'package:hackatanga_project/screens/tour/tour.dart';
 import 'package:hackatanga_project/theme/constants.dart';
@@ -27,7 +27,7 @@ void main() async {
           //return Tour(
           // screenHeight: screenHeight,
           // );
-          return PsycologistContactsPage();
+          return Home();
         },
       ),
     ),
