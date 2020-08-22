@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 List<List<String>> contacts = [
   ["Pão sírio", "12:02", "3"],
@@ -8,20 +9,27 @@ List<List<String>> contacts = [
   ["Pão de mel", "10:32", "2"],
 ];
 
-class PsychologistContactsPage extends StatefulWidget {
+class PsycologistContactsPage extends StatefulWidget {
   @override
-  _PsychologistContactsPageState createState() =>
-      _PsychologistContactsPageState();
+  _PsycologistContactsPageState createState() => _PsycologistContactsPageState();
 }
 
-class _PsychologistContactsPageState extends State<PsychologistContactsPage> {
+class _PsycologistContactsPageState extends State<PsycologistContactsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Conversas'),
+          backgroundColor: Color(0xffc781cf),
+          title: Text ('Acolhimento Psicológico', style: GoogleFonts.oswald(
+            textStyle: TextStyle(fontSize: 24, letterSpacing: 1.5),
+          ),),
           centerTitle: true,
+          leading:   new IconButton(
+
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(null),
+          ),
         ),
         body: new ListView.builder(
             itemCount: contacts.length,
@@ -30,9 +38,14 @@ class _PsychologistContactsPageState extends State<PsychologistContactsPage> {
                 child: Column(children: [
                   SizedBox(height: 12),
                   SizedBox(
-                    height: 49,
+                    height: 48,
                     width: 336,
+
                     child: RaisedButton(
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+
+                      ),
                       onPressed: () {},
                       color: Color(0xFFE5E5E5),
                       textColor: Colors.white,
@@ -43,7 +56,7 @@ class _PsychologistContactsPageState extends State<PsychologistContactsPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Icon(Icons.person, color: Color(0xFFE5E5E5)),
+                              Icon(Icons.person, color: Color(0xFF95539E), size: 48,),
                               SizedBox(width: 6),
                               Text(
                                 contacts[index][0],

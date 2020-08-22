@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 List<List<String>> contacts = [
   ["Pão sírio", "12:02", "3"],
@@ -20,8 +21,15 @@ class _JuristicalContactsPageState extends State<JuristicalContactsPage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFFCF81B0),
-          title: Text('Conversas'),
+          title: Text ('Conversas Advogado', style: GoogleFonts.oswald(
+            textStyle: TextStyle(fontSize: 24, letterSpacing: 1.5),
+          ),),
           centerTitle: true,
+          leading:   new IconButton(
+
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(null),
+          ),
         ),
         body: new ListView.builder(
             itemCount: contacts.length,
@@ -30,9 +38,14 @@ class _JuristicalContactsPageState extends State<JuristicalContactsPage> {
                 child: Column(children: [
                   SizedBox(height: 12),
                   SizedBox(
-                    height: 49,
+                    height: 48,
                     width: 336,
+
                     child: RaisedButton(
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+
+                      ),
                       onPressed: () {},
                       color: Color(0xFFE5E5E5),
                       textColor: Colors.white,
@@ -43,7 +56,7 @@ class _JuristicalContactsPageState extends State<JuristicalContactsPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Icon(Icons.person, color: Color(0xFF9D5381)),
+                              Icon(Icons.person, color: Color(0xFF9D5381), size: 48,),
                               SizedBox(width: 6),
                               Text(
                                 contacts[index][0],
