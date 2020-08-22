@@ -25,7 +25,7 @@ void main() async {
           //return Tour(
           // screenHeight: screenHeight,
           // );
-          return EmergencyPage();
+          return Home();
         },
       ),
     ),
