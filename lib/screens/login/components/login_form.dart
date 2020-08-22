@@ -6,6 +6,7 @@ import 'package:hackatanga_project/screens/login/components/custom_input_field.d
 import 'package:hackatanga_project/screens/login/components/fade_slide_transition.dart';
 import 'package:hackatanga_project/screens/login/login_controller.dart';
 import 'package:hackatanga_project/screens/register/register.dart';
+import 'package:hackatanga_project/screens/register/terms_of_use.dart';
 import 'package:hackatanga_project/screens/tour/constants.dart';
 
 class LoginForm extends StatelessWidget {
@@ -70,7 +71,13 @@ class LoginForm extends StatelessWidget {
                 height: 48.0,
               ),
               onPressed: () {
-                loginController.login(context);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return TermsOfUses();
+                    },
+                  ),
+                );
               },
             ),
           ),

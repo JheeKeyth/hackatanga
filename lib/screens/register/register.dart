@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackatanga_project/models/user.dart';
 import 'package:hackatanga_project/screens/login/components/fade_slide_transition.dart';
 import 'package:hackatanga_project/screens/login/components/login_form.dart';
 import 'package:hackatanga_project/screens/login/components/register_form.dart';
@@ -10,9 +11,13 @@ import 'package:hackatanga_project/screens/tour/constants.dart';
 
 class Register extends StatefulWidget {
   final double screenHeight;
+  final isGoogleAuth;
+  final UserModel user;
 
   const Register({
     @required this.screenHeight,
+    this.isGoogleAuth,
+    this.user
   }) : assert(screenHeight != null);
 
   @override

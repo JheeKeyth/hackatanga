@@ -88,7 +88,7 @@ class _DrawerState extends State<DrawerMenu> {
             ],
           ),
           onTap: (){
-            Auth().logout(context);
+            Auth().logoutGoogle(context);
           },
         ),
       ],

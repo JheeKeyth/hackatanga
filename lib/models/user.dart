@@ -1,4 +1,4 @@
-class User {
+class UserModel {
 
   final String name;
   final String cpf;
@@ -8,7 +8,7 @@ class User {
   final String CRP;
   final bool isProfessional;
 
-  User({
+  UserModel({
     this.cpf,
     this.name,
     this.phone,

@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hackatanga_project/screens/home/home.dart';
+import 'package:hackatanga_project/data/auth.dart';
 import 'package:hackatanga_project/screens/tour/tour.dart';
 
 class LoginController {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  Auth auth = new Auth();
 
-  login(BuildContext context) async {
+  loginGoogle(BuildContext context) async {
     try {
-      await _googleSignIn.signIn();
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) {
-            return Home();
-          },
-        ),
-      );
+      //_dialogPhoneNumber(context);
     } catch (err) {
       print(err);
     }
