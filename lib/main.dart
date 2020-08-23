@@ -4,7 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hackatanga_project/screens/chat/chat.dart';
 import 'package:hackatanga_project/screens/home/home.dart';
-
+import 'package:hackatanga_project/screens/home/pages/emergency_page.dart';
+import 'package:hackatanga_project/screens/home/pages/juristical_contacts_page.dart';
+import 'package:hackatanga_project/screens/home/pages/psychologist_contacts_page.dart';
+import 'package:hackatanga_project/screens/home/pages/psychologist_page.dart';
 //imports local
 import 'package:hackatanga_project/screens/tour/tour.dart';
 import 'package:hackatanga_project/theme/constants.dart';
@@ -21,9 +24,10 @@ void main() async {
       home: Builder(
         builder: (BuildContext context) {
           var screenHeight = MediaQuery.of(context).size.height;
-          return Tour(
-            screenHeight: screenHeight,
-          );
+          //return Tour(
+          // screenHeight: screenHeight,
+          // );
+          return Home();
         },
       ),
     ),
