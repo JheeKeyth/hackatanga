@@ -27,7 +27,7 @@ void main() async {
           //return Tour(
            // screenHeight: screenHeight,
          // );
-          return PsycologistContactsPage();
+          return EmergencyPage();
         },
       ),
     ),
