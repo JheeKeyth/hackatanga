@@ -10,6 +10,8 @@ import 'package:hackatanga_project/screens/home/pages/home_page.dart';
 import 'package:hackatanga_project/screens/home/pages/juristical_page.dart';
 import 'package:hackatanga_project/screens/home/pages/psychologist_page.dart';
 import 'package:hackatanga_project/theme/constants.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,6 +20,7 @@ class Home extends StatefulWidget {
 
 class _HomePageState extends State<Home> {
   int _lastSelected = 0;
+  Position _currentPosition;
 
   void _selectedTab(int index) {
     setState(() {
@@ -58,7 +61,7 @@ class _HomePageState extends State<Home> {
         notchedShape: CircularNotchedRectangle(),
         onTabSelected: _selectedTab,
         items: [
-          FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+          FABBottomAppBarItem(iconData: Icons.call, text: 'Emergência'),
           FABBottomAppBarItem(iconData: Icons.gavel, text: 'Jurídico'),
           FABBottomAppBarItem(iconData: Icons.person, text: 'Psicologo'),
           FABBottomAppBarItem(iconData: Icons.group, text: 'Apoio'),
@@ -74,32 +77,55 @@ class _HomePageState extends State<Home> {
       overlayBuilder: (context, offset) {
         return CenterAbout(
           position: Offset(offset.dx, offset.dy - icons.length * 35.0),
-          child: FabWithIcons(
-            icons: icons,
-            onIconTapped: _selectedFab,
-          ),
+          // child: FabWithIcons(
+          //   icons: icons,
+          //   onIconTapped: _selectedFab,
+          // ),
         );
       },
       child: FloatingActionButton(
-        onPressed: () {},
-        child: Text('SOS'),
+        onPressed: () {
+          _getCurrentLocation();
+        },
+        child: Text('SOS', style: TextStyle(color: Colors.white, fontSize: 15)),
         elevation: 5.0,
+        backgroundColor: Color.fromRGBO(255, 105, 97, .7),
       ),
     );
   }
 
   Widget _screensHome(int index) {
     if (index == 0) {
-      return HomePage();
+      return EmergencyPage();
     } else if (index == 1) {
       return Juristical();
       // return Chat();
     } else if (index == 2) {
       return Psychologist();
     } else if (index == 3) {
-      return EmergencyPage();
+      // return Chat();
     }
 
     return null;
+  }
+
+  _getCurrentLocation() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+      String texto = 'Erro ao pegar localização da vítima.';
+      if (_currentPosition != null) {
+        texto =
+            "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}";
+      }
+      FlutterOpenWhatsapp.sendSingleMessage("5534991572772", texto);
+    }).catchError((e) {
+      print(e);
+    });
   }
 }
