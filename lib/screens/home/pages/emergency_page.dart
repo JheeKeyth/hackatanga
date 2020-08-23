@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hackatanga_project/screens/home/components/buttom_custom.dart';
 
 class EmergencyPage extends StatefulWidget {
   @override
@@ -12,51 +14,56 @@ class _EmergencyPageState extends State<EmergencyPage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Emergência'),
+          title: Text ('Emergência', style: GoogleFonts.oswald(
+            textStyle: TextStyle(fontSize: 24, letterSpacing: 1.5),
+          ),),
           centerTitle: true,
           backgroundColor: Color(0xFFCFA181),
-          leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: null),
+
+          leading:   new IconButton(
+
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(null),
+          ),
         ),
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 12),
-              SizedBox(
-                height: 47,
-                width: 332,
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Color(0xFFCFA181),
-                  textColor: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    // Replace with a Row for horizontal icon + text
-                    children: <Widget>[
-                      Icon(Icons.person),
-                      Text('Delegacia', style: TextStyle(fontSize: 20)),
-                    ],
-                  ),
-                ),
+              SizedBox(height: 48),
+
+              ButtomCustom(
+                text: 'Polícia Federal',
+                textColor: Colors.white,
+                backgroundColor: Color(0xFFCFA181),
+                icon: Icons.person,
+                onClick: () {print("texto");}
+
               ),
-              //inicio botao mais contatos
-              SizedBox(height: 12),
-              SizedBox(
-                height: 47,
-                width: 332,
-                child: RaisedButton(
-                  onPressed: () {},
-                  color: Color(0xFF9d7254),
+              ButtomCustom(
+                  text: 'Delegacia da Mulher',
                   textColor: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    // Replace with a Row for horizontal icon + text
-                    children: <Widget>[
-                      Icon(Icons.person_add),
-                      Text('Novo Contato', style: TextStyle(fontSize: 20)),
-                    ],
-                  ),
-                ),
+                  backgroundColor: Color(0xFFCFA181),
+                  icon: Icons.person,
+                  onClick: () {print("texto");}
+
               ),
+              ButtomCustom(
+                  text: 'Samu',
+                  textColor: Colors.white,
+                  backgroundColor: Color(0xFFCFA181),
+                  icon: Icons.person,
+                  onClick: () {print("texto");}
+
+              ),
+              ButtomCustom(
+                  text: 'Samu',
+                  textColor: Colors.white,
+                  backgroundColor: Color(0xFF9D7254),
+                  icon: Icons.person_add,
+                  onClick: () {print("texto");}
+
+              ),
+
               //fim botao mais contatos
             ],
           ),
