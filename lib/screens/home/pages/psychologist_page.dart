@@ -47,8 +47,7 @@ class _Psychologist extends State<Psychologist> {
             tooltip: 'Voltar',
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) => Home()));
+              Navigator.pop(context);
             }),
         backgroundColor: Color.fromRGBO(152, 100, 158, .7),
       ),
@@ -87,6 +86,7 @@ class _Psychologist extends State<Psychologist> {
                     leading: CircleAvatar(
                       backgroundImage:
                           AssetImage("./assets/images/user_icon.png"),
+                      backgroundColor: Color.fromRGBO(192, 136, 199, .7),
                     ),
                     title: Text('Grosbilda Maria',
                         style: TextStyle(color: Colors.white)),
@@ -103,6 +103,7 @@ class _Psychologist extends State<Psychologist> {
                     leading: CircleAvatar(
                       backgroundImage:
                           AssetImage("./assets/images/user_icon.png"),
+                      backgroundColor: Color.fromRGBO(192, 136, 199, .7),
                     ),
                     title: Text('Josefina Martha',
                         style: TextStyle(color: Colors.white)),
@@ -119,6 +120,7 @@ class _Psychologist extends State<Psychologist> {
                     leading: CircleAvatar(
                       backgroundImage:
                           AssetImage("./assets/images/user_icon.png"),
+                      backgroundColor: Color.fromRGBO(192, 136, 199, .7),
                     ),
                     title: Text(
                       'Carlitos Tevez',

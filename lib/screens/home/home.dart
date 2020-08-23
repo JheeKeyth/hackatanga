@@ -7,6 +7,7 @@ import 'package:hackatanga_project/screens/home/components/drawer.dart';
 import 'package:hackatanga_project/screens/home/components/fab_with_icons.dart';
 import 'package:hackatanga_project/screens/home/pages/emergency_page.dart';
 import 'package:hackatanga_project/screens/home/pages/home_page.dart';
+import 'package:hackatanga_project/screens/home/pages/juristical_page.dart';
 import 'package:hackatanga_project/screens/home/pages/psychologist_page.dart';
 import 'package:hackatanga_project/theme/constants.dart';
 
@@ -91,7 +92,8 @@ class _HomePageState extends State<Home> {
     if (index == 0) {
       return HomePage();
     } else if (index == 1) {
-      return Chat();
+      return Juristical();
+      // return Chat();
     } else if (index == 2) {
       return Psychologist();
     } else if (index == 3) {
