@@ -103,7 +103,7 @@ class _HomePageState extends State<Home> {
     } else if (index == 2) {
       return Psychologist();
     } else if (index == 3) {
-      // return Chat();
+      return Chat();
     }
 
     return null;
