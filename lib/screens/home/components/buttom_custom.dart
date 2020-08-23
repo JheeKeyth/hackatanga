@@ -39,7 +39,5 @@ class ButtomCustom extends StatelessWidget {
     ),
         SizedBox(height: 12)],
     );
-
   }
-
 }

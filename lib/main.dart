@@ -24,10 +24,10 @@ void main() async {
       home: Builder(
         builder: (BuildContext context) {
           var screenHeight = MediaQuery.of(context).size.height;
-          //return Tour(
-           // screenHeight: screenHeight,
-         // );
-          return EmergencyPage();
+          return Tour(
+            screenHeight: screenHeight,
+          );
+
         },
       ),
     ),

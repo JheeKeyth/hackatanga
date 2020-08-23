@@ -44,7 +44,6 @@ class _PsycologistContactsPageState extends State<PsycologistContactsPage> {
                     child: RaisedButton(
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(10.0),
-
                       ),
                       onPressed: () {},
                       color: Color(0xFFE5E5E5),
