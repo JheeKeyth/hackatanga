@@ -15,6 +15,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
           title: Text('Emergência'),
           centerTitle: true,
           backgroundColor: Color(0xFFCFA181),
+          leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: null),
         ),
         body: Center(
           child: Column(

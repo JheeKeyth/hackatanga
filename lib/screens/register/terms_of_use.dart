@@ -1,13 +1,16 @@
 import 'package:cpfcnpj/cpfcnpj.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:hackatanga_project/data/auth.dart';
+import 'package:hackatanga_project/data/user.dart';
 import 'package:hackatanga_project/models/user.dart';
 import 'package:hackatanga_project/screens/home/home.dart';
 import 'package:hackatanga_project/screens/login/components/custom_button.dart';
 import 'package:hackatanga_project/screens/register/register.dart';
+import 'package:location/location.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TermsOfUses extends StatefulWidget {
@@ -16,23 +19,33 @@ class TermsOfUses extends StatefulWidget {
 }
 
 class _TermsOfUsesState extends State<TermsOfUses> {
+  //GPS Location
+  Location location = new Location();
+  Coordinates coordinates;
+  //Authentication
+  Auth auth = new Auth();
+  UserModel user = new UserModel();
+  //Forms
   final _formKey = GlobalKey<FormState>();
   final _formKeyDialog = GlobalKey<FormState>();
   final cpfController = TextEditingController();
   final phoneController = TextEditingController();
   final smsController = TextEditingController();
-  var maskPhoneNumber = MaskTextInputFormatter(
-      mask: "+55 (##) # ####-####", filter: {"#": RegExp(r'[0-9]')});
-  var maskCPF = MaskTextInputFormatter(
-      mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
-  String verificationId;
-  String smsCode;
   String _professional = "";
   List<String> _profession = ["Advogado", "Psicólogo"];
+  //Mask
+  var maskPhoneNumber = MaskTextInputFormatter(mask: "+55 (##) # ####-####", filter: {"#": RegExp(r'[0-9]')});
+  var maskCPF = MaskTextInputFormatter(mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
+  //Phone validation
+  String verificationId;
+  String smsCode;
+  //Toast
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -210,21 +223,16 @@ class _TermsOfUsesState extends State<TermsOfUses> {
                         color: Theme.of(context).accentColor,
                         textColor: Colors.white,
                         text: 'CONCORDO',
-                        onPressed: () {
-                          if (_professional.isEmpty)
-                            if (_formKey.currentState.validate()) {
-                              verifyPhohe().then((value) => (response) {
-                                    if (!response) {
-                                      Navigator.of(context).pop();
-                                      //mostrar que deu erro
-                                    } else {
-                                      Navigator.of(context).pop();
-                                    }
-                                  });
+                        onPressed: () async{
+                          if (_formKey.currentState.validate()) {
+                            if (_professional.isEmpty){
+                              await validatorUser();
+                            }else{
+                              //TODO: Fazer ação de cadastrar profissional
+                              check_professional(context);
                             }
-                          else{
-                            check_professional(context);
                           }
+
                         },
                       ),
                     ),
@@ -238,7 +246,7 @@ class _TermsOfUsesState extends State<TermsOfUses> {
     );
   }
 
-  Future<void> verifyPhohe() async {
+  Future<Widget> validatorUser() async {
     final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verificationID) {
       this.verificationId = verificationID;
     };
@@ -249,14 +257,16 @@ class _TermsOfUsesState extends State<TermsOfUses> {
     };
 
     final PhoneVerificationCompleted verifiedSuccess = (AuthCredential auth) {
-      print('Verification was a success.');
-      return auth;
+      print('Verification was a success: ${auth.providerId}');
+      return Auth().loginGoogle(context);
     };
 
-    final PhoneVerificationFailed verifiedFailed =
-        (FirebaseAuthException exception) {
-      print('${exception.message}');
-      return false;
+    final PhoneVerificationFailed verifiedFailed = (FirebaseAuthException exception) {
+      print('verifiedFailed(${exception.code}): ${exception.message}');
+      if(exception.code == 'too-many-requests')
+        _showToast('Bloqueamos todas as solicitações deste dispositivo devido a atividade incomum. Tente mais tarde.');
+      //return false;
+      return Auth().loginGoogle(context);
     };
 
     await FirebaseAuth.instance.verifyPhoneNumber(
@@ -267,7 +277,6 @@ class _TermsOfUsesState extends State<TermsOfUses> {
         timeout: const Duration(seconds: 5),
         codeAutoRetrievalTimeout: autoRetrieve);
   }
-
   Future<bool> smsCodeDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -291,34 +300,11 @@ class _TermsOfUsesState extends State<TermsOfUses> {
             contentPadding: EdgeInsets.all(10),
             actions: [
               new FlatButton(
-                onPressed: () {
-                  if (FirebaseAuth.instance.currentUser != null) {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Register(
-                            isGoogleAuth: true,
-                            user: new UserModel(
-                              name:
-                                  FirebaseAuth.instance.currentUser.displayName,
-                              email: FirebaseAuth.instance.currentUser.email,
-                              cpf: maskCPF.getUnmaskedText(),
-                              phone: maskPhoneNumber.getUnmaskedText(),
-                              isProfessional: _professional.isEmpty ? false : true,
-                              CRP: null,
-                              OAB: null,
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  } else {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Auth().loginGoogle(context);
-                  }
+                onPressed: () async{
+                  print('BOTAO APERTADO');
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+
                 },
                 child: Text('Enviar'),
               ),
@@ -332,14 +318,14 @@ class _TermsOfUsesState extends State<TermsOfUses> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return new AlertDialog(
-            title: (_professional == 'Advogado') ? Text('Digite o SMS recebido.') :
-            Text('Digite o SMS recebido.'),
+            title: (_professional == 'Advogado') ? Text('Digite seu número de identificação OAB.') :
+            Text('Digite seu número de identificação CRP.'),
             content: Form(
               key: _formKeyDialog,
               child: TextFormField(
                 controller: smsController,
                 validator: (value) {
-                  if (value.isEmpty) return 'Digite o código.';
+                  if (value.isEmpty) return 'Digite sua identificação.';
                   return null;
                 },
                 onChanged: (value) {
@@ -376,7 +362,7 @@ class _TermsOfUsesState extends State<TermsOfUses> {
                   } else {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
-                    Auth().loginGoogle(context);
+                    //Auth().loginGoogle(context);
                   }
                 },
                 child: Text('Enviar'),
@@ -384,5 +370,56 @@ class _TermsOfUsesState extends State<TermsOfUses> {
             ],
           );
         });
+  }
+  void _showToast(String text) {
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text(text),
+          duration: Duration(seconds: 10),
+        ));
+  }
+  static Future getLocation(Location location) async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    try {
+      return await location.getLocation();
+
+    } catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {}
+      return null;
+    }
+  }
+  getUser(value) async{
+    coordinates = new Coordinates(value.latitude, value.longitude);
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses.first;
+    return new UserModel(
+        isProfessional: false,
+        name: FirebaseAuth.instance.currentUser.displayName,
+        email: FirebaseAuth.instance.currentUser.email,
+        cpf: maskCPF.getUnmaskedText(),
+        phone: maskPhoneNumber.getUnmaskedText(),
+        OAB: null,
+        CRP: null,
+        CEP: first.postalCode,
+        lat: value.latitude,
+        long: value.longitude);
   }
 }

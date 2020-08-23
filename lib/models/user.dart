@@ -7,6 +7,9 @@ class UserModel {
   final String OAB;
   final String CRP;
   final bool isProfessional;
+  final String lat;
+  final String long;
+  final String CEP;
 
   UserModel({
     this.cpf,
@@ -15,8 +18,9 @@ class UserModel {
     this.email,
     this.OAB,
     this.CRP,
-    this.isProfessional
-
+    this.isProfessional,
+    this.lat,
+    this.long,
+    this.CEP
   });
-
 }

@@ -8,25 +8,11 @@ import 'package:hackatanga_project/screens/tour/tour.dart';
 class Auth {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   FirebaseAuth _auth = FirebaseAuth.instance;
-  UserModel user;
-  loginGoogle(BuildContext context) async{
+
+  Future loginGoogle(BuildContext context) async{
+    Navigator.of(context).pop;
     try {
-//      _dialogPhoneNumber(context);
-      await _googleSignIn.signIn().then((response) => (){
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return Register(
-                isGoogleAuth: true,
-                user: new UserModel(
-                  email: response.email,
-                  name: response.displayName,
-                ),
-              );
-            },
-          ),
-        );
-      });
+      await _googleSignIn.signIn();
     } catch (err) {
       print(err);
     }
