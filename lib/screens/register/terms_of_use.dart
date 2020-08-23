@@ -352,8 +352,8 @@ class _TermsOfUsesState extends State<TermsOfUses> {
                               cpf: maskCPF.getUnmaskedText(),
                               phone: maskPhoneNumber.getUnmaskedText(),
                               isProfessional: _professional.isEmpty ? false : true,
-                              CRP: null,
-                              OAB: null,
+                              crp: null,
+                              oab: null,
                             ),
                           );
                         },
@@ -416,9 +416,9 @@ class _TermsOfUsesState extends State<TermsOfUses> {
         email: FirebaseAuth.instance.currentUser.email,
         cpf: maskCPF.getUnmaskedText(),
         phone: maskPhoneNumber.getUnmaskedText(),
-        OAB: null,
-        CRP: null,
-        CEP: first.postalCode,
+        oab: null,
+        crp: null,
+        zipCode: first.postalCode,
         lat: value.latitude,
         long: value.longitude);
   }

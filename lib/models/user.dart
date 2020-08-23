@@ -4,23 +4,23 @@ class UserModel {
   final String cpf;
   final String phone;
   final String email;
-  final String OAB;
-  final String CRP;
+  final String oab;
+  final String crp;
   final bool isProfessional;
   final String lat;
   final String long;
-  final String CEP;
+  final String zipCode;
 
   UserModel({
     this.cpf,
     this.name,
     this.phone,
     this.email,
-    this.OAB,
-    this.CRP,
+    this.oab,
+    this.crp,
     this.isProfessional,
     this.lat,
     this.long,
-    this.CEP
+    this.zipCode
   });
 }

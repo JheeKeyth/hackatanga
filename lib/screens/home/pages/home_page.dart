@@ -29,8 +29,8 @@ class _HomePageState extends State<HomePage> {
                 'Se identificou com alguma situação? \n Não tenha medo de pedir ajuda.\n Estamos aqui por você!',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.oswald(
-                    fontSize: 24,
-                  ),
+                  fontSize: 24,
+                ),
               ),
             ),
           ],
