@@ -6,9 +6,11 @@ import 'package:hackatanga_project/screens/home/components/anchored_overlay.dart
 import 'package:hackatanga_project/screens/home/components/drawer.dart';
 import 'package:hackatanga_project/screens/home/components/fab_with_icons.dart';
 import 'package:hackatanga_project/screens/home/pages/emergency_page.dart';
+import 'package:hackatanga_project/screens/home/pages/juristical_contacts_page.dart';
 import 'package:hackatanga_project/screens/home/pages/home_page.dart';
 import 'package:hackatanga_project/screens/home/pages/juristical_page.dart';
 import 'package:hackatanga_project/screens/home/pages/psychologist_page.dart';
+import 'package:hackatanga_project/screens/home/pages/psychologist_contacts_page.dart';
 import 'package:hackatanga_project/theme/constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
@@ -98,10 +100,9 @@ class _HomePageState extends State<Home> {
     if (index == 0) {
       return EmergencyPage();
     } else if (index == 1) {
-      return Juristical();
-      // return Chat();
+      return JuristicalContactsPage();
     } else if (index == 2) {
-      return Psychologist();
+      return PsycologistContactsPage();
     } else if (index == 3) {
       return Chat();
     }
